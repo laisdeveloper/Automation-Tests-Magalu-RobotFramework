@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.12.3 on linux)" generated="2025-01-29T12:08:02.943708" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="/home/laisdev/Documentos/robotframework/TestMagazineLuiza/tests/tests.robot">
+<test id="s1-t1" name="Cenário 02: Filtrar Produtos pela Marca" line="14">
+<kw name="Abrir navegador" owner="resource" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-01-29T12:08:03.063548" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<arg>browser=${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-01-29T12:08:03.063359" elapsed="0.499232"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-01-29T12:08:03.562764" elapsed="0.026931"/>
+</kw>
+<status status="PASS" start="2025-01-29T12:08:03.062814" elapsed="0.527037"/>
+</kw>
+<kw name="Dado que o usuário está na página inicial da Magazine Luiza" owner="resource">
+<kw name="Acessar página inicial do site Magazine Luiza" owner="resource">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-01-29T12:08:03.590900" level="INFO">Opening url 'https://www.magazineluiza.com.br'</msg>
+<arg>${HOME_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-01-29T12:08:03.590778" elapsed="3.396840"/>
+</kw>
+<status status="PASS" start="2025-01-29T12:08:03.590560" elapsed="3.397167"/>
+</kw>
+<kw name="Verificar se o header da pagina é ${HEADER}" owner="resource" source_name="Verificar se o header da pagina é ${HEADER}">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>//title[@data-testid='link-0'][contains(.,'${HEADER}')]</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-01-29T12:08:06.988119" elapsed="0.377449"/>
+</kw>
+<status status="PASS" start="2025-01-29T12:08:06.987878" elapsed="0.377788"/>
+</kw>
+<tag>HomeMagalu</tag>
+<status status="PASS" start="2025-01-29T12:08:03.590182" elapsed="3.775527"/>
+</kw>
+<kw name="Quando ele busca pelo produto &quot;TV&quot;" owner="resource" source_name="Quando ele busca pelo produto &quot;${SEARCH_NAME}&quot;">
+<kw name="Digitar nome &quot;${SEARCH_NAME}&quot; no campo de busca" owner="resource" source_name="Digitar nome &quot;${SEARCH_NAME}&quot; no campo de ${WHERE}">
+<if>
+<branch type="IF" condition="$WHERE == 'busca'">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-01-29T12:08:07.366650" level="INFO">Digitar nome "TV" no campo de busca</msg>
+<arg>Digitar nome "${SEARCH_NAME}" no campo de busca</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-01-29T12:08:07.366535" elapsed="0.000150"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-01-29T12:08:07.366937" level="INFO">Typing text 'TV' into text field '//input[contains(@type,'search')]'.</msg>
+<arg>locator=${SEARCH_TEXT}</arg>
+<arg>text=${SEARCH_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-01-29T12:08:07.366764" elapsed="0.580088"/>
+</kw>
+<status status="PASS" start="2025-01-29T12:08:07.366342" elapsed="0.580607"/>
+</branch>
+<branch type="ELSE IF" condition="$WHERE == 'filtro'">
+<kw name="Log" owner="BuiltIn">
+<arg>Digitar nome "${SEARCH_NAME}" no campo de filtro</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-01-29T12:08:07.947163" elapsed="0.000028"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>locator=${SEARCH_FILTER}</arg>
+<arg>text=${SEARCH_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-01-29T12:08:07.947271" elapsed="0.000019"/>
+</kw>
+<status status="NOT RUN" start="2025-01-29T12:08:07.947003" elapsed="0.000315"/>
+</branch>
+<status status="PASS" start="2025-01-29T12:08:07.366321" elapsed="0.581024"/>
+</if>
+<status status="PASS" start="2025-01-29T12:08:07.366175" elapsed="0.581225"/>
+</kw>
+<kw name="Clicar no botao de busca" owner="resource" source_name="Clicar no botao de ${WHERE}">
+<if>
+<branch type="IF" condition="$WHERE == 'busca'">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-01-29T12:08:07.948700" level="FAIL">Variable '${SEARCH_BUTTON}' not found. Did you mean:
+    ${SEARCH_BUTTON_TEXT}</msg>
+<arg>${SEARCH_BUTTON}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="FAIL" start="2025-01-29T12:08:07.948126" elapsed="0.000634">Variable '${SEARCH_BUTTON}' not found. Did you mean:
+    ${SEARCH_BUTTON_TEXT}</status>
+</kw>
+<msg time="2025-01-29T12:08:07.948882" level="INFO">${SEARCH_IS_VISIBLE} = False</msg>
+<var>${SEARCH_IS_VISIBLE}</var>
+<arg>Element Should Be Visible</arg>
+<arg>${SEARCH_BUTTON}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2025-01-29T12:08:07.947990" elapsed="0.000910"/>
+</kw>
+<if>
+<branch type="IF" condition="${SEARCH_IS_VISIBLE}">
+<kw name="Log" owner="BuiltIn">
+<arg>Botão de pesquisa encontrado. Clicando no botão.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-01-29T12:08:07.949145" elapsed="0.000023"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${SEARCH_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-01-29T12:08:07.949244" elapsed="0.000018"/>
+</kw>
+<status status="NOT RUN" start="2025-01-29T12:08:07.948991" elapsed="0.000300"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-01-29T12:08:07.949489" level="INFO">Botão de pesquisa não encontrado. Pressionando Enter.</msg>
+<arg>Botão de pesquisa não encontrado. Pressionando Enter.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-01-29T12:08:07.949384" elapsed="0.000162"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2025-01-29T12:08:07.949866" level="INFO">Sending key(s) ('RETURN',) to page.</msg>
+<msg time="2025-01-29T12:08:07.949934" level="INFO">Pressing special key RETURN to browser.</msg>
+<msg time="2025-01-29T12:08:07.949969" level="INFO">Releasing special key RETURN.</msg>
+<arg>NONE</arg>
+<arg>RETURN</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2025-01-29T12:08:07.949618" elapsed="0.066482"/>
+</kw>
+<status status="PASS" start="2025-01-29T12:08:07.949320" elapsed="0.066903"/>
+</branch>
+<status status="PASS" start="2025-01-29T12:08:07.948970" elapsed="0.067318"/>
+</if>
+<status status="PASS" start="2025-01-29T12:08:07.947806" elapsed="0.068527"/>
+</branch>
+<branch type="ELSE IF" condition="$WHERE == 'filtro'">
+<kw name="Press Keys" owner="SeleniumLibrary">
+<arg>NONE</arg>
+<arg>RETURN</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="NOT RUN" start="2025-01-29T12:08:08.016624" elapsed="0.000045"/>
+</kw>
+<status status="NOT RUN" start="2025-01-29T12:08:08.016388" elapsed="0.000347"/>
+</branch>
+<status status="PASS" start="2025-01-29T12:08:07.947789" elapsed="0.068990"/>
+</if>
+<status status="PASS" start="2025-01-29T12:08:07.947616" elapsed="0.069214"/>
+</kw>
+<tag>SearchProduct</tag>
+<status status="PASS" start="2025-01-29T12:08:07.365911" elapsed="0.650960"/>
+</kw>
+<kw name="E aplica os filtros pelas marcas" owner="resource">
+<kw name="Verifica se o filtro de marcas está visível" owner="resource">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>//p[@data-testid='main-title'][contains(.,'Marca')]</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-01-29T12:08:08.017609" elapsed="4.717076"/>
+</kw>
+<status status="PASS" start="2025-01-29T12:08:08.017399" elapsed="4.717439"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Filtrar a marca ${LIST_PRODUCTS}" owner="resource" source_name="Filtrar a marca ${LIST_PRODUCTS}">
+<kw name="Digitar nome &quot;${LIST_PRODUCTS}&quot; no campo de filtro" owner="resource" source_name="Digitar nome &quot;${SEARCH_NAME}&quot; no campo de ${WHERE}">
+<if>
+<branch type="IF" condition="$WHERE == 'busca'">
+<kw name="Log" owner="BuiltIn">
+<arg>Digitar nome "${SEARCH_NAME}" no campo de busca</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-01-29T12:08:12.735954" elapsed="0.000024"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>locator=${SEARCH_TEXT}</arg>
+<arg>text=${SEARCH_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-01-29T12:08:12.736063" elapsed="0.000018"/>
+</kw>
+<status status="NOT RUN" start="2025-01-29T12:08:12.735735" elapsed="0.000373"/>
+</branch>
+<branch type="ELSE IF" condition="$WHERE == 'filtro'">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-01-29T12:08:12.736375" level="INFO">Digitar nome "Samsung" no campo de filtro</msg>
+<arg>Digitar nome "${SEARCH_NAME}" no campo de filtro</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-01-29T12:08:12.736251" elapsed="0.000163"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-01-29T12:08:12.736677" level="INFO">Typing text 'Samsung' into text field '//input[contains(@placeholder,'Busque por ')]'.</msg>
+<arg>locator=${SEARCH_FILTER}</arg>
+<arg>text=${SEARCH_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-01-29T12:08:12.736486" elapsed="0.296748"/>
+</kw>
+<status status="PASS" start="2025-01-29T12:08:12.736135" elapsed="0.297214"/>
+</branch>
+<status status="PASS" start="2025-01-29T12:08:12.735716" elapsed="0.297700"/>
+</if>
+<status status="PASS" start="2025-01-29T12:08:12.735557" elapsed="0.297964"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-01-29T12:08:13.034063" level="INFO">Clicking element '(//li[@data-testid='filter-checkbox'][contains(.,'Samsung')])[1]'.</msg>
+<arg>(//li[@data-testid='filter-checkbox'][contains(.,'${LIST_PRODUCTS}')])[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-01-29T12:08:13.033741" elapsed="0.175143"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>//div[@font-size='0'][contains(.,'${LIST_PRODUCTS}')]</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-01-29T12:08:13.209081" elapsed="2.360594"/>
+</kw>
+<status status="PASS" start="2025-01-29T12:08:12.735264" elapsed="2.834577"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${SEARCH_FILTER}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-01-29T12:08:15.570048" elapsed="0.191225"/>
+</kw>
+<var name="${LIST_PRODUCTS}">Samsung</var>
+<status status="PASS" start="2025-01-29T12:08:12.735130" elapsed="3.026268"/>
+</iter>
+<iter>
+<kw name="Filtrar a marca ${LIST_PRODUCTS}" owner="resource" source_name="Filtrar a marca ${LIST_PRODUCTS}">
+<kw name="Digitar nome &quot;${LIST_PRODUCTS}&quot; no campo de filtro" owner="resource" source_name="Digitar nome &quot;${SEARCH_NAME}&quot; no campo de ${WHERE}">
+<if>
+<branch type="IF" condition="$WHERE == 'busca'">
+<kw name="Log" owner="BuiltIn">
+<arg>Digitar nome "${SEARCH_NAME}" no campo de busca</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-01-29T12:08:15.762979" elapsed="0.000024"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>locator=${SEARCH_TEXT}</arg>
+<arg>text=${SEARCH_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-01-29T12:08:15.763088" elapsed="0.000018"/>
+</kw>
+<status status="NOT RUN" start="2025-01-29T12:08:15.762798" elapsed="0.000336"/>
+</branch>
+<branch type="ELSE IF" condition="$WHERE == 'filtro'">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-01-29T12:08:15.763381" level="INFO">Digitar nome "LG" no campo de filtro</msg>
+<arg>Digitar nome "${SEARCH_NAME}" no campo de filtro</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-01-29T12:08:15.763269" elapsed="0.000150"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-01-29T12:08:15.763666" level="INFO">Typing text 'LG' into text field '//input[contains(@placeholder,'Busque por ')]'.</msg>
+<arg>locator=${SEARCH_FILTER}</arg>
+<arg>text=${SEARCH_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-01-29T12:08:15.763484" elapsed="0.133111"/>
+</kw>
+<status status="PASS" start="2025-01-29T12:08:15.763165" elapsed="0.133518"/>
+</branch>
+<status status="PASS" start="2025-01-29T12:08:15.762781" elapsed="0.133940"/>
+</if>
+<status status="PASS" start="2025-01-29T12:08:15.762468" elapsed="0.134321"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-01-29T12:08:15.897146" level="INFO">Clicking element '(//li[@data-testid='filter-checkbox'][contains(.,'LG')])[1]'.</msg>
+<msg time="2025-01-29T12:08:16.051937" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-35.png"&gt;&lt;img src="selenium-screenshot-35.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-01-29T12:08:16.052080" level="FAIL">Element with locator '(//li[@data-testid='filter-checkbox'][contains(.,'LG')])[1]' not found.</msg>
+<arg>(//li[@data-testid='filter-checkbox'][contains(.,'${LIST_PRODUCTS}')])[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="FAIL" start="2025-01-29T12:08:15.896936" elapsed="0.156233">Element with locator '(//li[@data-testid='filter-checkbox'][contains(.,'LG')])[1]' not found.</status>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>//div[@font-size='0'][contains(.,'${LIST_PRODUCTS}')]</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="NOT RUN" start="2025-01-29T12:08:16.053342" elapsed="0.000025"/>
+</kw>
+<status status="FAIL" start="2025-01-29T12:08:15.761925" elapsed="0.291533">Element with locator '(//li[@data-testid='filter-checkbox'][contains(.,'LG')])[1]' not found.</status>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${SEARCH_FILTER}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-01-29T12:08:16.053560" elapsed="0.000020"/>
+</kw>
+<var name="${LIST_PRODUCTS}">LG</var>
+<status status="FAIL" start="2025-01-29T12:08:15.761673" elapsed="0.291944">Element with locator '(//li[@data-testid='filter-checkbox'][contains(.,'LG')])[1]' not found.</status>
+</iter>
+<var>${LIST_PRODUCTS}</var>
+<value>@{LIST_PRODUCTS}</value>
+<status status="FAIL" start="2025-01-29T12:08:12.734969" elapsed="3.318708">Element with locator '(//li[@data-testid='filter-checkbox'][contains(.,'LG')])[1]' not found.</status>
+</for>
+<arg>Samsung</arg>
+<arg>LG</arg>
+<arg>PHILIPS</arg>
+<status status="FAIL" start="2025-01-29T12:08:08.017103" elapsed="8.036652">Element with locator '(//li[@data-testid='filter-checkbox'][contains(.,'LG')])[1]' not found.</status>
+</kw>
+<kw name="Fechar navegador" owner="resource" type="TEARDOWN">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-01-29T12:08:16.054175" elapsed="0.088444"/>
+</kw>
+<status status="PASS" start="2025-01-29T12:08:16.053991" elapsed="0.088789"/>
+</kw>
+<status status="FAIL" start="2025-01-29T12:08:03.062295" elapsed="13.080627">Element with locator '(//li[@data-testid='filter-checkbox'][contains(.,'LG')])[1]' not found.</status>
+</test>
+<doc>Este arquivo contém os testes para validar passos para compra do site Magazine Luiza
+Autor: Lais Coutinho</doc>
+<status status="FAIL" start="2025-01-29T12:08:02.944478" elapsed="13.199183"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Tests">Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
