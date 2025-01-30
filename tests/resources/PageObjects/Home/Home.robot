@@ -1,12 +1,7 @@
 *** Settings ***
 Documentation       Este arquivo contém os Page Objects relacionados à página inicial do site Magazine Luiza.
-Resource                ../../resource2.robot
 
-# Resource                ../Home/Home.robot
-# Resource                ../Cart/Cart.robot
-# Resource                ../Delivery/Delivery.robot
-# Resource                ../Login/Login.robot
-# Resource                ../Search/Search.robot
+Resource                ../../resource.robot
 
 
 *** Variables ***

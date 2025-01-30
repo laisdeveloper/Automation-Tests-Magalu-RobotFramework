@@ -1,11 +1,7 @@
 *** Settings ***
 Documentation       Este arquivo contém os Page Objects relacionados ao carrinho de compras do site Magazine Luiza.
-Resource             ../../resource2.robot
+Resource             ../../resource.robot
 
-# Resource                ../Home/Home.robot
-# Resource                ../Cart/Cart.robot
-# Resource                ../Delivery/Delivery.robot
-# Resource                ../Login/Login.robot
 Resource                ../Search/Search.robot
 
 *** Variables ***
@@ -82,7 +78,7 @@ Verificar se esta na pagina carrinho
     END
 
 Visualizar o produto ${NAME_PRODUCT}
-    Verificar se esta listando o produto "${NAME_PRODUCT}"
+    Search.Verificar se esta listando o produto "${NAME_PRODUCT}"
     Click Element                                            //h2[@data-testid='product-title'][contains(.,'${NAME_PRODUCT}')]
     Wait Until Page Contains Element                         //h1[@data-testid='heading-product-title'][contains(.,'${NAME_PRODUCT}')]            timeout=${TIMEOUT}
 

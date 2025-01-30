@@ -1,11 +1,8 @@
 *** Settings ***
 Documentation       Este arquivo contém os Page Objects relacionados à entrega do site Magazine Luiza.
 
-# Resource                ../Home/Home.robot
 Resource                ../Cart/Cart.robot
-# Resource                ../Delivery/Delivery.robot
-# Resource                ../Login/Login.robot
-# Resource                ../Search/Search.robot
+Resource                ../Search/Search.robot
 
 
 *** Variables ***

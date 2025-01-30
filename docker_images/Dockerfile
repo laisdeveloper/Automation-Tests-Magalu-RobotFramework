@@ -1,8 +1,8 @@
-FROM ubuntu:24.04
+FROM ubuntu:20.04
 
-VOLUME /opt/robotframework/TestMagazineLuiza/results
-VOLUME /opt/robotframework/TestMagazineLuiza/tests
-
-RUN apt-get install -y python3 python3-pip
+RUN apt-get update && apt-get install -y python3 python3-pip
 RUN pip3 install robotframework \
     robotframework-seleniumlibrary
+
+VOLUME /opt/robotframework/results
+VOLUME /opt/robotframework/tests

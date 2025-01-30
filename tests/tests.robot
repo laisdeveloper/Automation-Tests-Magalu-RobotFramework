@@ -4,7 +4,7 @@ Documentation       Este arquivo contém os testes para validar os passos princi
 ...                 Ele cobre cenários críticos para garantir uma experiência fluida de compra para o usuário.
 ...                    Autor: Lais Coutinho
 
-Resource            ./resources/resource2.robot
+Resource            ./resources/resource.robot
 
 Test Setup          Abrir navegador
 Test Teardown       Fechar navegador
