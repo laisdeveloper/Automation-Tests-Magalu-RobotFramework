@@ -3,7 +3,9 @@ Documentation       Este arquivo contém os testes para validar os passos princi
 ...                 manipulação do carrinho, login e tratamento de erros no site Magazine Luiza.
 ...                 Ele cobre cenários críticos para garantir uma experiência fluida de compra para o usuário.
 ...                    Autor: Lais Coutinho
-Resource            ./resources/resource.robot
+
+Resource            ./resources/resource2.robot
+
 Test Setup          Abrir navegador
 Test Teardown       Fechar navegador
 
@@ -22,24 +24,24 @@ Cenário 02: Filtrar Produtos pela Marca
     [Tags]            sc02    Search    Filter    FilterByBrand
     Dado que o usuário está na página inicial da Magazine Luiza
     Quando ele busca pelo produto "TV"
-    E aplica o filtro pela marca                                     Samsung    LG    Philips
-    Então devem ser exibidos somente produtos das marcas             Samsung    LG    Philips
+    E aplica o filtro pela marca                                                     Samsung            LG                Philips
+    Então devem ser exibidos somente produtos das marcas                             Samsung            LG                Philips
 
 Cenário 03: Ver Ofertas de uma Marca
     [Documentation]  Este cenário valida se o usuário consegue visualizar corretamente as ofertas disponíveis para uma marca específica.
     [Tags]            sc03    Search    ViewBrandOffers
     Dado que o usuário está na página inicial da Magazine Luiza
     Quando ele acessa a página "Ofertas do Dia"
-    E aplica o filtro pela marca                                     Adidas
-    Então devem ser exibidos somente produtos das marcas             Adidas
+    E aplica o filtro pela marca                                                     Adidas
+    Então devem ser exibidos somente produtos das marcas                             Adidas
 
 Cenário 04: Adicionar Múltiplos Produtos ao Carrinho
     [Documentation]  Este cenário avalia a funcionalidade de adicionar vários produtos ao carrinho de compras.
     ...    Ele garante que os produtos selecionados sejam incluídos corretamente e exibidos no carrinho.
     [Tags]            sc04    Cart    AddMultipleProductsToCart
     Dado que o usuário está na página inicial da Magazine Luiza
-    Quando ele busca e adiciona ao carrinho os produtos                     Brinquedo Cachorro    Notebook    TV   
-    Então devem estar no carrinho todos os produtos pesquisados             Brinquedo Cachorro    Notebook    TV   
+    Quando ele busca e adiciona ao carrinho os produtos                             Brinquedo            Notebook          TV   
+    Então devem estar no carrinho todos os produtos pesquisados                     Brinquedo            Notebook          TV   
 
 Cenário 05: Adicionar Único Produto ao Carrinho
     [Documentation]  ste cenário verifica a funcionalidade de adicionar um único produto ao carrinho de compras, 
@@ -67,8 +69,8 @@ Cenário 07: Alterar Quantidade de Itens no Carrinho
     Dado que o usuário está na página inicial da Magazine Luiza
     Quando ele busca pelo produto "Notebook"
     E adiciona ao carrinho o produto "Notebook"
-    E altera a quantidade de itens para                                     2
-    Então a quantidade do produto no carrinho deve ser                      2
+    E altera a quantidade de itens para                                             2
+    Então a quantidade do produto no carrinho deve ser                              2
 
 Cenário 08: Fazer Login com Credenciais Válidas
     [Documentation]  Este cenário valida o login no site com credenciais válidas. 
@@ -76,7 +78,7 @@ Cenário 08: Fazer Login com Credenciais Válidas
     [Tags]            sc08    Login    LoginWithValidCredentials
     Dado que o usuário está na página inicial da Magazine Luiza
     Quando ele acessa a página de login
-    E insere credenciais válidas                                            email=laiscc575@gmail.com            senha=julho2005
+    E insere credenciais válidas                                                    email=laiscc575@gmail.com             senha=julho2005
     Então o login deve ser realizado com sucesso
 
 Cenário 09: Tratar CEP Inválido
@@ -85,7 +87,7 @@ Cenário 09: Tratar CEP Inválido
     [Tags]            sc09    Delivery    InvalidCEP
     Dado que o usuário está na página inicial da Magazine Luiza
     Quando ele abre o pop-up de CEP
-    E insere um CEP inválido                                                00000000
+    E insere um CEP inválido                                                        00000000
     Então o sistema deve exibir uma mensagem de erro indicando que o CEP é inválido
 
 Cenário 10: Verificar Opção de Retirada na Loja
@@ -93,7 +95,7 @@ Cenário 10: Verificar Opção de Retirada na Loja
     [Tags]            sc10    Cart    Delivery    StorePickup
     Dado que o usuário está na página inicial da Magazine Luiza
     Quando ele busca pelo produto "Notebook"
-    E o usuário está logado no sistema                                      email=laiscc575@gmail.com            senha=julho2005
+    E o usuário está logado no sistema                                              email=laiscc575@gmail.com              senha=julho2005
     E adiciona ao carrinho o produto "Notebook"
-    E insere um CEP válido se necessario                                    62320041
+    E insere um CEP válido se necessario                                            62320041
     Então o sistema deve verificar a opção "Retire na loja" se disponível

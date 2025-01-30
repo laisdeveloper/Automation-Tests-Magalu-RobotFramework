@@ -32,8 +32,7 @@ ${CART_QUANTITY_ITEM_PRODUCT}            //select[contains(@class,'BasketItemPro
 ${LOGIN_VERIFICATION_SUCESS}             //div[@class='sc-ggqIjW jRnSmj'][contains(.,'Olá, ')]
 ${LOGIN_VERIFICATION_FAIL}               //div[@class='sc-ggqIjW jRnSmj'][contains(.,'Bem-vindo :)Entre ou cadastre-se')]
 ${DELIVERY_BUTTON_ALTER_CEP}             //span[@class='BasketAddress-address-change__label'][contains(.,'Alterar')]
-# ${}
-# ${}
+
 
 *** Keywords ***
 # Setup e Teardown
