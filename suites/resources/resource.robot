@@ -28,13 +28,3 @@ Abrir navegador
 Fechar navegador
     Close Browser
     Log                                             Navegador fechado com sucesso.
-
-# Keywords Granularizadas
-Digitar nome "${SEARCH_NAME}" no campo de ${WHERE}
-    IF    $WHERE == 'busca'
-        Log    Digitar nome "${SEARCH_NAME}" no campo de busca
-        Input Text                                  locator=${SEARCH_TEXT}                                                                      text=${SEARCH_NAME}
-    ELSE IF    $WHERE == 'filtro'
-        Log    Digitar nome "${SEARCH_NAME}" no campo de filtro
-        Input Text                                  locator=${SEARCH_FILTER}                                                                    text=${SEARCH_NAME}
-    END

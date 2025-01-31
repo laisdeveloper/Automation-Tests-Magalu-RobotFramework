@@ -1,6 +1,8 @@
 *** Settings ***
 Documentation       Este arquivo contém os Page Objects relacionados ao login do site Magazine Luiza.
 
+Resource                                 ../../resource.robot
+
 
 *** Variables ***
 ${LOGIN_VERIFICATION_SUCESS}             //div[@class='sc-ggqIjW jRnSmj'][contains(.,'Olá, ')]

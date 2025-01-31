@@ -1,49 +1,27 @@
-# Imagem base
-FROM ubuntu:20.04
+FROM selenium/standalone-chrome:latest
 
-# Definir a variável de ambiente para evitar prompts do apt
-ENV DEBIAN_FRONTEND=noninteractive
+# Instalando Python e dependências do Robot Framework
+USER root
+RUN apt-get update && \
+apt-get install -y python3 python3-venv && \
+python3 -m venv /opt/venv && \
+/opt/venv/bin/pip install --upgrade pip && \
+/opt/venv/bin/pip install robotframework selenium robotframework-seleniumlibrary
 
-# Instalar dependências do sistema
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    xvfb \
-    wget \
-    unzip \
-    libx11-6 \
-    gnupg \
-    curl && \
-    apt-get clean
-
-# Instalar o Google Chrome (última versão estável)
-RUN wget -qO- https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /usr/share/keyrings/google-linux-keyring.gpg && \
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-linux-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
-    apt-get update && apt-get install -y google-chrome-stable && \
-    apt-get clean
-
-# Baixar uma versão fixa do ChromeDriver
-RUN wget https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip && \
-    unzip chromedriver_linux64.zip && \
-    mv chromedriver /usr/local/bin/ && \
-    chmod +x /usr/local/bin/chromedriver && \
-    rm chromedriver_linux64.zip
-
-# Instalar Robot Framework e SeleniumLibrary
-RUN pip3 install robotframework robotframework-seleniumlibrary
-
-# Configurar diretórios para testes e resultados
-RUN mkdir -p /opt/robotframework/suites /opt/robotframework/results
-
-# Volumes para compartilhar testes e resultados com o host
-VOLUME /opt/robotframework/suites
-VOLUME /opt/robotframework/results
-
-# Configurar o Xvfb (servidor gráfico)
+# Variáveis de ambiente
+ENV PATH="/opt/venv/bin:$PATH"
+ENV CHROME_BIN=/usr/bin/google-chrome-stable
 ENV DISPLAY=:99
+ENV ROBOT_OUTPUTDIR=/opt/robotframework/results
+ENV ROBOT_TESTSDIR=/opt/robotframework/suites/tests
+ENV CHROME_OPTIONS=--user-data-dir=/opt/robotframework/user-data
 
-# Definir diretório de trabalho
-WORKDIR /opt/robotframework
+# Diretórios de resultados e testes
+VOLUME /opt/robotframework/results
+VOLUME /opt/robotframework/suites/tests
 
-# Comando padrão para executar os testes
-CMD ["robot", "--outputdir", "/opt/robotframework/results", "/opt/robotframework/suites"]
+# Comando para rodar os testes
+CMD ["/bin/bash", "-c", "\
+mkdir -p $ROBOT_OUTPUTDIR && \
+mkdir -p /opt/robotframework/user-data && \
+robot --variable CHROME_OPTIONS:$CHROME_OPTIONS --outputdir $ROBOT_OUTPUTDIR $ROBOT_TESTSDIR"]

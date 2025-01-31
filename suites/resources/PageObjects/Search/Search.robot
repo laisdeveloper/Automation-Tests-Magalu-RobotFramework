@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation       Este arquivo contém os Page Objects relacionados à busca do site Magazine Luiza.
 
+Resource                                 ../../resource.robot
 
 *** Variables ***
 ${SEARCH_BUTTON_TEXT}                                                //svg[@aria-label='Buscar produto']
@@ -66,3 +67,12 @@ Verificar se esta listando o produto "${PRODUCT}"
     Wait Until Page Contains                                         ${NAME_PRODUCT}                                                                                             timeout=${TIMEOUT}
     # Scroll Element Into View                                         //h1[@data-testid='main-title'][contains(.,'${NAME_PRODUCT}')]
     Wait Until Page Contains Element                                 //h1[@data-testid='main-title'][contains(.,'${NAME_PRODUCT}')]                                              timeout=${TIMEOUT}
+
+Digitar nome "${SEARCH_NAME}" no campo de ${WHERE}
+    IF    $WHERE == 'busca'
+        Log    Digitar nome "${SEARCH_NAME}" no campo de busca
+        Input Text                                  locator=${SEARCH_TEXT}                                                                      text=${SEARCH_NAME}
+    ELSE IF    $WHERE == 'filtro'
+        Log    Digitar nome "${SEARCH_NAME}" no campo de filtro
+        Input Text                                  locator=${SEARCH_FILTER}                                                                    text=${SEARCH_NAME}
+    END
