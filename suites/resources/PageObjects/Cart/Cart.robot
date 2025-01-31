@@ -14,11 +14,11 @@ ${CART_QUANTITY_ITEM_PRODUCT}            //select[contains(@class,'BasketItemPro
 
 *** Keywords ***
 Quando ele remove todos os produtos do carrinho
-    FOR    ${button}    IN    ${CART_BUTTON_REMOVE_ITEM}
-        Click Element    ${button}
-        Sleep                                                   ${TIMEOUT_SLEEP}
+    FOR    ${button}    IN                                  ${CART_BUTTON_REMOVE_ITEM}
+        Click Element                                       ${button}
+        Sleep                                               ${TIMEOUT_SLEEP}
         ${CART_EMPTY_STATUS}    Run Keyword And Return Status    Wait Until Page Contains Element    ${CART_VERIFICATION_IS_EMPTY}      timeout=${TIMEOUT} 
-        Log   ${CART_EMPTY_STATUS}
+        Log                                                 ${CART_EMPTY_STATUS}
         Run Keyword If    ${CART_EMPTY_STATUS}              Exit For Loop
     END
 
@@ -46,7 +46,7 @@ E altera a quantidade de itens para
 
 
 Então o produto "${NAME_PRODUCT}" deve estar no carrinho
-    Wait Until Page Contains Element                        //p[contains(.,'${NAME_PRODUCT}')]                                          timeout=${TIMEOUT} 
+    Wait Until Page Contains Element                        //p[contains(.,'${NAME_PRODUCT}')]                                           timeout=${TIMEOUT} 
 
 
 Então o carrinho deve estar vazio
@@ -63,7 +63,7 @@ Então devem estar no carrinho todos os produtos pesquisados
     [Arguments]                                             @{PRODUCTS}
     Verificar se esta na pagina carrinho
     FOR    ${PRODUCT}    IN    @{PRODUCTS}
-        Wait Until Page Contains Element                    //p[contains(.,'${PRODUCT}')]                                          timeout=${TIMEOUT} 
+        Wait Until Page Contains Element                    //p[contains(.,'${PRODUCT}')]                                                timeout=${TIMEOUT} 
     END
 
 
@@ -78,7 +78,7 @@ Verificar se esta na pagina carrinho
     END
 
 Visualizar o produto ${NAME_PRODUCT}
-    Search.Verificar se esta listando o produto "${NAME_PRODUCT}"
+    Verificar se esta listando o produto "${NAME_PRODUCT}"
     Click Element                                            //h2[@data-testid='product-title'][contains(.,'${NAME_PRODUCT}')]
     Wait Until Page Contains Element                         //h1[@data-testid='heading-product-title'][contains(.,'${NAME_PRODUCT}')]            timeout=${TIMEOUT}
 
