@@ -18,11 +18,13 @@ ${DELIVERY_BUTTON_CONFIRM_CEP_CART}                       //button[@class='butto
 
 *** Keywords ***
 Quando ele abre o pop-up de CEP
+    Log                                                   Abrindo pop-up de CEP
     Click Element                                         ${DELIVERY_BUTTON_ACESS_CEP}
     Wait Until Page Contains Element                      ${DELIVERY_MESSAGE_CONFIRM_POPUP}                                                                   timeout=${TIMEOUT}
 
 E insere um CEP válido se necessario                                                  
     [Arguments]                                           ${CEP}
+    Log                                                   Verificando se o CEP já está cadastrado.
     ${DELIVERY_ALTER_IS_VISIBLE}    Run Keyword And Return Status    Element Should Be Visible                                                                ${DELIVERY_BUTTON_ALTER_CEP}
     Log                                                   ${DELIVERY_ALTER_IS_VISIBLE}
 
@@ -33,19 +35,25 @@ E insere um CEP válido se necessario
         Click Element                                     ${DELIVERY_BUTTON_ALTER_CEP}
         Inserindo CEP no carrinho                         ${CEP}
     END
+    Log                                                   Esperando conclusão do processo.
     Wait Until Element Is Enabled                         ${DELIVERY_BUTTON_CONTINUE_CART}                                                                    timeout=${TIMEOUT}
 
 E insere um CEP inválido
     [Arguments]                                           ${CEP}
+    Log                                                   Limpando campo de CEP.
     Clear Element Text                                    ${DELIVERY_INPUT_CEP_CART_NAME} 
+    Log                                                   Inserindo CEP inválido.
     Input Text                                            ${DELIVERY_INPUT_CEP_CART_NAME}                                                                     ${CEP}
+    Log                                                   Verificando se a messagem de erro é exibida.
     Wait Until Page Contains Element                      ${DELIVERY_MESSAGE_NOT_FOUND}                                                                       timeout=${TIMEOUT}
 
 Então o sistema deve verificar a opção "${DELIVERY_MESSAGE_OPTION}" se disponível
+    Log                                                   Verificando opção de entrega. Exemplo: Retire na loja.
     Ir ate a pagina de verificacao de compra
     Verificar opcao de entrega                           ${DELIVERY_MESSAGE_OPTION}
 
 Então o sistema deve exibir uma mensagem de erro indicando que o CEP é inválido
+    Log                                                   Verificando se a messagem de erro é exibida.
     Wait Until Page Contains Element                      ${DELIVERY_MESSAGE_NOT_FOUND}                                                                       timeout=${TIMEOUT}
 
 
@@ -61,19 +69,22 @@ Verificar opcao de entrega
     END
 
 Ir ate a pagina de verificacao de compra
-    Wait Until Page Contains Element                       ${DELIVERY_BUTTON_CONTINUE_CART}                                                                    timeout=${TIMEOUT}
-    Sleep                                                  ${TIMEOUT_SLEEP}
-    Click Element                                          ${DELIVERY_BUTTON_CONTINUE_CART}
-    # Wait Until Page Contains Element                     //button[@class='AddressList-confirmButton'][contains(.,'Continuar')]                               timeout=${TIMEOUT}
-    # Click Element                                        //button[@class='AddressList-confirmButton'][contains(.,'Continuar')]    
-    Wait Until Page Contains Element                       //button[@type='button'][contains(.,'Continuar')]                                                   timeout=${TIMEOUT}
+    Log                                                   Esperando a pagina de verificacao de compra carregar.
+    Wait Until Page Contains Element                      ${DELIVERY_BUTTON_CONTINUE_CART}                                                                    timeout=${TIMEOUT}
+    Sleep                                                 ${TIMEOUT_SLEEP}
+    Log                                                   Indo para a pagina de verificacao de compra.
+    Click Element                                         ${DELIVERY_BUTTON_CONTINUE_CART}
+    Wait Until Page Contains Element                      //button[@type='button'][contains(.,'Continuar')]                                                   timeout=${TIMEOUT}
 
 Inserindo CEP no carrinho
     [Arguments]                                           ${CEP}
+    Log                                                   Inserindo CEP no carrinho.
     Click Element                                         ${DELIVERY_INPUT_CEP_CART_CLASS} 
     Clear Element Text                                    ${DELIVERY_INPUT_CEP_CART_CLASS} 
     Input Text                                            ${DELIVERY_INPUT_CEP_CART_CLASS}                                                                     ${CEP}
+    Log                                                   Espera o processo de inserção do CEP.
     Wait Until Page Contains Element                      ${DELIVERY_BUTTON_CONFIRM_CEP_CART}                                                                  timeout=${TIMEOUT}
+    Log                                                   Confirmando CEP.
     Click Element                                         ${DELIVERY_BUTTON_CONFIRM_CEP_CART}
 
 
